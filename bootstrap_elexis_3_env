@@ -1,0 +1,40 @@
+#!/bin/bash
+set -e
+
+export ROOT=`dirname $0`
+export ROOT=`readlink -f $ROOT`
+# configure to your liking
+export CHECKOUT=$ROOT/checkout
+export INSTALL_DIR=$ROOT/eclipse
+export INSTALL_CMD="$ROOT/director/director -destination $INSTALL_DIR -profile Elexis "
+#export IUS="epp.package.rcp,org.eclipse.mylyn.wikitext_feature.feature.group,org.eclipse.mylyn.ide_feature.feature.group,org.eclipse.mylyn_feature.feature.group,org.eclipse.m2e.sdk.feature.feature.group,com.wdev91.eclipse.copyright,com.google.eclipse.mechanic/0.3.4"
+export IUS="epp.package.rcp,com.inventage.tools.versiontiger,org.eclipse.m2e.sdk.feature.feature.group,com.wdev91.eclipse.copyright,com.google.eclipse.mechanic/0.3.4"
+export REPOS="http://download.eclipse.org/releases/kepler,http://download.eclipse.org/technology/m2e/releases,https://raw.github.com/inventage/version-tiger-repos/master/releases,http://www.wdev91.com/update,http://workspacemechanic.eclipselabs.org.codespot.com/git.update/mechanic"
+
+# end of configuration section
+
+if [ ! -d $ROOT/director ]; then
+cd $ROOT
+rm -rf director director*.zip
+wget http://mirror.switch.ch/eclipse/tools/buckminster/products/director_latest.zip
+unzip director_latest.zip
+fi
+
+mkdir -p $CHECKOUT
+if [ ! -d $CHECKOUT/elexis-3-core ]; then git clone https://github.com/elexis/elexis-3-core.git $CHECKOUT/elexis-3-core; fi
+if [ ! -d $CHECKOUT/elexis-3-base ]; then git clone https://github.com/elexis/elexis-3-base.git $CHECKOUT/elexis-3-base; fi
+
+mkdir -p ~/.eclipse/mechanic
+cp -pu $ROOT/mechanic/*.epf ~/.eclipse/mechanic
+
+if [ ! -d $INSTALL_DIR ]; then
+$INSTALL_CMD -repository $REPOS -installIUs $IUS
+fi
+
+cd $INSTALL_DIR
+if [ ! -f plugins/de.guhsoft.jinto-0.13.5.jar ]; then
+rm -f de.guhsoft.jinto-*.zip*
+wget http://www.guh-software.de/jinto/de.guhsoft.jinto-0.13.5.zip
+unzip de.guhsoft.jinto-0.13.5.zip
+fi
+

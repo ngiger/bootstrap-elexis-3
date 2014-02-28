@@ -1,0 +1,66 @@
+h2. A simple way to bootstrap an Eclipse environment for Elexis 3
+
+(c) Copyright 2014 Niklaus Giger <niklaus.giger@member.fsf.org>
+
+Here you find a small script bootstrap_elexis_3_env which installs an Eclipse (Kepler) and a checkout of the elexis-3-core and base repositories into the current directory. This script took less than 3 minutes (depends on the download speed) in my setup.
+
+Prerequisites:
+* Java7. You may install a JDK from "Oracle":http://www.oracle.com/technetwork/java/javase/downloads/index.html
+* git. You may download a version from "git-scm.com":http://git-scm.com/downloads
+
+Steps:
+
+* @git clone https://github.com/ngiger/bootstrap-elexis-3.git@
+* @cd bootstrap-elexis-3@
+* @./bootstrap_elexis_3_env@
+  
+* @eclipse/eclipse &@
+** Correct your workspace settings by double clicking on the workspace-mechanic button on the lower left !mechanic_1.png!
+** Apply the changes as suggested by !mechanic_2.png!
+** Afterwards the button should change to Applied. !mechanic_3.png! Workspace mechanic will check regularly whether your workspace is still up to date. 
+** Under Help..Install new software import the "p2_sites.xml":https://raw.github.com/ngiger/bootstrap-elexis-3./master/p2_sites.xml
+** Install JInto
+** Add all projects found under checkout
+** Open ch.elexis.target/juno-target.target. Wait till the "Resolving Target Definition" task has reached 100%. Then click on "Set as Target Platform".
+** Launch ch.elexis.core.application/Elexis<..your os..>
+
+If you have workspace-mechanic installed in your Eclipse installation, all your workspaces are regularly checked whether they have your preferredd settings. They live ~/.eclipse/mechanic
+
+h3. Example install log
+
+bc. --2014-02-28 14:13:26--  http://mirror.switch.ch/eclipse/tools/buckminster/products/director_latest.zip
+Auflösen des Hostnamen »mirror.switch.ch (mirror.switch.ch)«... 130.59.10.36, 2001:620:0:8::20
+Verbindungsaufbau zu mirror.switch.ch (mirror.switch.ch)|130.59.10.36|:80... verbunden.
+HTTP-Anforderung gesendet, warte auf Antwort... 200 OK
+Länge: 9377181 (8.9M) [application/zip]
+In »»director_latest.zip«« speichern.
+<..>
+2014-02-28 14:13:26 (13.5 MB/s) - »»director_latest.zip«« gespeichert [9377181/9377181]
+<...>
+Klone nach '/opt/kepler/checkout/elexis-3-core'...
+Klone nach '/opt/kepler/checkout/elexis-3-base'...
+Installing epp.package.rcp 2.0.1.20130919-0803.
+Installing com.inventage.tools.versiontiger 1.2.0.RELEASE.
+Installing org.eclipse.m2e.sdk.feature.feature.group 1.4.0.20130601-0317.
+Installing com.wdev91.eclipse.copyright 1.4.0.
+Installing com.google.eclipse.mechanic 0.3.4.
+Operation completed in 119526 ms.
+--2014-02-28 14:15:40--  http://www.guh-software.de/jinto/de.guhsoft.jinto-0.13.5.zip
+<..>
+2014-02-28 14:15:41 (846 KB/s) - »»de.guhsoft.jinto-0.13.5.zip«« gespeichert [788669/788669]
+Archive:  de.guhsoft.jinto-0.13.5.zip
+  inflating: plugins/de.guhsoft.jinto.doc_0.13.0.jar
+<..>
+
+
+h3. More info
+
+* "myWorkspaceMechanics":https://github.com/wimjongman/myWorkspaceMechanics.git has some more changes to the workspace preferences
+* Record and propose your changes using the "PreferenceRecorder":http://code.google.com/a/eclipselabs.org/p/workspacemechanic/wiki/PreferenceRecorder to the "Elexis developer list":elexis-develop@lists.sourceforge.net
+* @director/director -list -r http://www.wdev91.com/update@ allows you to list all installable units of a given P2-update site. Unfortunately some P2-site (eg. jinto) work only inside the Eclipse but not via the buckminster director
+
+h3. Alternatives/not choosen paths
+
+* "Setup-Eclipse":https://wiki.eclipse.org/Setup-Eclipse. Disadvantages creates 50MB big installers
+* A full VM (Too big, unclear how to create)
+* "docker":http://docker.io Disadvantages, Linux-only, project is young, but promising (low on resources) but maybe I will use this solution as part of setup

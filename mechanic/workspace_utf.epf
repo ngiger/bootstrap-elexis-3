@@ -1,0 +1,5 @@
+# @title UTF-8
+# @description Workspace encoding must be UTF-8
+# @task_type LASTMOD
+#
+/instance/org.eclipse.core.resources/encoding=UTF-8
