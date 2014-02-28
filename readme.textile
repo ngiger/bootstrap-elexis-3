@@ -2,7 +2,7 @@ h2. A simple way to bootstrap an Eclipse environment for Elexis 3
 
 (c) Copyright 2014 Niklaus Giger <niklaus.giger@member.fsf.org>
 
-Here you find a small script bootstrap_elexis_3_env which installs an Eclipse (Kepler) and a checkout of the elexis-3-core and base repositories into the current directory. This script took less than 3 minutes (depends on the download speed) in my setup.
+Here you find a small ruby script bootstrap_elexis_3_env.rb which installs an Eclipse (Kepler) and a checkout of the elexis-3-core and base repositories into the current directory. This script took less than 3 minutes (depends on the download speed) in my setup.
 
 Prerequisites:
 * Java7. You may install a JDK from "Oracle":http://www.oracle.com/technetwork/java/javase/downloads/index.html
@@ -12,7 +12,7 @@ Steps:
 
 * @git clone https://github.com/ngiger/bootstrap-elexis-3.git@
 * @cd bootstrap-elexis-3@
-* @./bootstrap_elexis_3_env@
+* @./bootstrap_elexis_3_env.rb@
   
 * @eclipse/eclipse &@
 ** Correct your workspace settings by double clicking on the workspace-mechanic button on the lower left !mechanic_1.png!
