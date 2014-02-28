@@ -1,0 +1,7 @@
+# @title Exit without prompt
+# @description Leave Eclipse without asking againg
+# @task_type LASTMOD
+#
+# Created by the Workspace Mechanic Preference Recorder
+#Fri Feb 28 21:40:04 CET 2014
+/instance/org.eclipse.ui.ide/EXIT_PROMPT_ON_CLOSE_LAST_WINDOW=false
