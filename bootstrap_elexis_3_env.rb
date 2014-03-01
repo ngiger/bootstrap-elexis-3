@@ -5,6 +5,7 @@ require 'open-uri'
 # configure to your liking
 
 ROOT				=	File.expand_path(File.dirname(__FILE__))
+WORKSPACE		=	File.join(ROOT, 'workspace')
 CHECKOUT		=	File.join(ROOT, 'checkout')
 INSTALL_DIR	=	File.join(ROOT, 'eclipse')
 INSTALL_CMD	=	File.join(ROOT, 'director', 'director') + " -destination #{INSTALL_DIR} -profile Elexis "
@@ -26,11 +27,12 @@ def system(cmd)
 end
 
 def get_file_from_url(url, dest= File.basename(url))
-	open(url) {
+	res = open(url) {
 		|f|
 		File.open(File.basename(url), 'w+') { |outfile| outfile.write f.read }
 	}
 	puts "dest ist #{dest} size #{File.size(dest)} from url #{url}"
+	res
 end
 
 unless File.directory?(File.join(ROOT, 'director'))
@@ -64,3 +66,4 @@ unless File.exists?(File.join(INSTALL_DIR, 'plugins', "de.guhsoft.jinto.core_#{J
   exit 1 unless system("unzip de.guhsoft.jinto-#{JINTO_VERS}.zip")
 end if JINTO_VERS
 puts "#{Time.now}: finished installing #{IUS} into #{CHECKOUT}/director, #{CHECKOUT} and #{INSTALL_DIR}"
+system("#{INSTALL_DIR}/eclipse -data #{WORKSPACE} &")

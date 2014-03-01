@@ -12,9 +12,7 @@ Steps:
 
 * @git clone https://github.com/ngiger/bootstrap-elexis-3.git@
 * @cd bootstrap-elexis-3@
-* @./bootstrap_elexis_3_env.rb@
-  
-* @eclipse/eclipse &@
+* @./bootstrap_elexis_3_env.rb@ # At the end it should start the eclipse creating an empty workspace in ./workspace 
 ** Correct your workspace settings by double clicking on the workspace-mechanic button on the lower left !mechanic_1.png!
 ** Apply the changes as suggested by !mechanic_2.png!
 ** Afterwards the button should change to Applied. !mechanic_3.png! Workspace mechanic will check regularly whether your workspace is still up to date. 
