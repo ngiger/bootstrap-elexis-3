@@ -40,7 +40,7 @@ end
 def get_file_from_url(url, dest= File.basename(url))
 	res = open(url) {
 		|f|
-		File.open(File.basename(url), 'w+') { |outfile| outfile.write f.read }
+		File.open(File.basename(url), 'wb+') { |outfile| outfile.write f.read }
 	}
 	puts "dest ist #{dest} size #{File.size(dest)} from url #{url}"
 	res
@@ -67,7 +67,7 @@ FileUtils.makedirs(mech_dest)
 FileUtils.cp(mech_tasks, mech_dest, :verbose => true, :preserve => true) unless FileUtils.uptodate?(mech_dest, mech_tasks)
 
 unless File.directory?(INSTALL_DIR)
-	exit 1 unless system("#{INSTALL_CMD} -repository #{REPOS.keys.join(',')} -installIUs #{REPOS.values.join(',')}")
+  exit 1 unless system("#{INSTALL_CMD} -repository #{REPOS.keys.join(' -r ')} -installIUs #{REPOS.values.join(' -i ')}")
 end
 
 unless File.exists?(File.join(INSTALL_DIR, 'plugins', "de.guhsoft.jinto.core_#{JINTO_VERS}.jar"))
