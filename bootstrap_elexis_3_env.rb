@@ -9,13 +9,24 @@ WORKSPACE		=	File.join(ROOT, 'workspace')
 CHECKOUT		=	File.join(ROOT, 'checkout')
 INSTALL_DIR	=	File.join(ROOT, 'eclipse')
 INSTALL_CMD	=	File.join(ROOT, 'director', 'director') + " -destination #{INSTALL_DIR} -profile Elexis "
-IUS="epp.package.rcp,com.inventage.tools.versiontiger,org.eclipse.m2e.sdk.feature.feature.group,com.wdev91.eclipse.copyright,com.google.eclipse.mechanic/0.3.4"
-REPOS="http://download.eclipse.org/releases/kepler,http://download.eclipse.org/technology/m2e/releases,https://raw.github.com/inventage/version-tiger-repos/master/releases,http://www.wdev91.com/update,http://workspacemechanic.eclipselabs.org.codespot.com/git.update/mechanic"
+REPOS = {
+  'http://download.eclipse.org/releases/kepler' => ['epp.package.rcp',
+                                                    'org.eclipse.egit.feature.group',
+                                                    'org.eclipse.mylyn.wikitext_feature.feature.group',
+                                                   ],
+  'http://jeeeyul.github.io/update' => ['net.jeeeyul.pdetools.feature.feature.group',],
+  'http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.7.0/N/0.7.0.201309291400' => ['org.sonatype.tycho.m2e.feature.feature.group'],
+  'http://download.eclipse.org/technology/m2e/releases' => ['org.eclipse.m2e.sdk.feature.feature.group'],
+  'https://raw.github.com/inventage/version-tiger-repos/master/releases' =>['com.inventage.tools.versiontiger'],
+  'http://www.wdev91.com/update' =>['com.wdev91.eclipse.copyright'],
+  'http://workspacemechanic.eclipselabs.org.codespot.com/git.update/mechanic' =>['com.google.eclipse.mechanic/0.3.4'],
+  }
+
 JINTO_VERS = '0.13.5'
 
 # end of configuration section
 
-puts "#{Time.now}: Using #{CHECKOUT}/director, #{CHECKOUT} and #{INSTALL_DIR} to install #{IUS}"
+puts "#{Time.now}: Using #{CHECKOUT}/director, #{CHECKOUT} and #{INSTALL_DIR} to install #{REPOS.keys}"
 def system(cmd)
 	puts "#{Time.now}: running #{cmd}"
 	res = Kernel.system(cmd)
@@ -56,7 +67,7 @@ FileUtils.makedirs(mech_dest)
 FileUtils.cp(mech_tasks, mech_dest, :verbose => true, :preserve => true) unless FileUtils.uptodate?(mech_dest, mech_tasks)
 
 unless File.directory?(INSTALL_DIR)
-	exit 1 unless system("#{INSTALL_CMD} -repository #{REPOS} -installIUs #{IUS}")
+	exit 1 unless system("#{INSTALL_CMD} -repository #{REPOS.keys.join(',')} -installIUs #{REPOS.values.join(',')}")
 end
 
 unless File.exists?(File.join(INSTALL_DIR, 'plugins', "de.guhsoft.jinto.core_#{JINTO_VERS}.jar"))
@@ -65,5 +76,5 @@ unless File.exists?(File.join(INSTALL_DIR, 'plugins', "de.guhsoft.jinto.core_#{J
 	exit 1 unless get_file_from_url("http://www.guh-software.de/jinto/de.guhsoft.jinto-#{JINTO_VERS}.zip")
   exit 1 unless system("unzip de.guhsoft.jinto-#{JINTO_VERS}.zip")
 end if JINTO_VERS
-puts "#{Time.now}: finished installing #{IUS} into #{CHECKOUT}/director, #{CHECKOUT} and #{INSTALL_DIR}"
+puts "#{Time.now}: finished installing #{REPOS.keys} into #{CHECKOUT}/director, #{CHECKOUT} and #{INSTALL_DIR}"
 system("#{INSTALL_DIR}/eclipse -data #{WORKSPACE} &")
