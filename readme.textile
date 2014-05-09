@@ -2,7 +2,7 @@ h2. A simple way to bootstrap an Eclipse environment for Elexis 3
 
 (c) Copyright 2014 Niklaus Giger <niklaus.giger@member.fsf.org>
 
-If you are just looking for the latest builds of Elexis 3 go to the "Jenkins-CI builds for Elexis":https://srv.elexis.info/jenkins/view/3.0/job/Elexis-3.0-Core/lastSuccessfulBuild/artifact/ch.elexis.core.p2site/target/products/
+* *__If you are just looking for the latest builds of Elexis 3 go to the "Jenkins-CI builds for Elexis":https://srv.elexis.info/jenkins/view/3.0/job/Elexis-3.0-Core/lastSuccessfulBuild/artifact/ch.elexis.core.p2site/target/products/__*
 
 Here you find a small ruby script bootstrap_elexis_3_env.rb which installs an Eclipse (Kepler) and a checkout of the elexis-3-core and base repositories into the current directory. This script took less than 3 minutes (depends on the download speed) in my setup.
 
