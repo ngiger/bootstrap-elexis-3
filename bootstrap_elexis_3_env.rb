@@ -18,7 +18,7 @@ REPOS = {
   'http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.7.0/N/0.7.0.201309291400' => ['org.sonatype.tycho.m2e.feature.feature.group'],
   'http://download.eclipse.org/technology/m2e/releases' => ['org.eclipse.m2e.sdk.feature.feature.group'],
   'https://raw.github.com/inventage/version-tiger-repos/master/releases' =>['com.inventage.tools.versiontiger'],
-  'http://www.wdev91.com/update' =>['com.wdev91.eclipse.copyright'],
+#  'http://www.wdev91.com/update' =>['com.wdev91.eclipse.copyright'],
   'http://workspacemechanic.eclipselabs.org.codespot.com/git.update/mechanic' =>['com.google.eclipse.mechanic/0.3.4'],
   }
 

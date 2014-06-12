@@ -26,6 +26,8 @@ Steps:
 
 If you have workspace-mechanic installed in your Eclipse installation, all your workspaces are regularly checked whether they have your preferredd settings. They live ~/.eclipse/mechanic
 
+Note of June 14, 2014: As the update site for com.wdev91.eclipse.copyright vanished, I uncommented the line in bootstrap_elexis_3_env.rb.
+
 h3. Example install log
 
 bc. --2014-02-28 14:13:26--  http://mirror.switch.ch/eclipse/tools/buckminster/products/director_latest.zip
