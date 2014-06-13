@@ -18,11 +18,11 @@ Steps:
 ** Correct your workspace settings by double clicking on the workspace-mechanic button on the lower left !mechanic_1.png!
 ** Apply the changes as suggested by !mechanic_2.png!
 ** Afterwards the button should change to Applied. !mechanic_3.png! Workspace mechanic will check regularly whether your workspace is still up to date. 
-** Under Help..Install new software import the "p2_sites.xml":https://raw.github.com/ngiger/bootstrap-elexis-3./master/p2_sites.xml
-** Install JInto
-** Add all projects found under checkout
-** Open ch.elexis.target/juno-target.target. Wait till the "Resolving Target Definition" task has reached 100%. Then click on "Set as Target Platform".
-** Launch ch.elexis.core.application/Elexis<..your os..>
+** Under Help..Install new software click "Available sites", then click on "Import" the p2_sites.xml from "github":https://raw.github.com/ngiger/bootstrap-elexis-3/master/p2_sites.xml or the file @p2_sites.xml@ in the cloned bootstrap-elexis-3.
+** (Should not be necessary) Select "JInto" from the drop down "Work". Select OpenSource/Jinto.
+** Select Menu/Import... Select Maven/Existing maven repositories and browse to the checkout directory of your cloned bootstrap-elexis-3 repository. This will need some time to find all Elexis-3 projects. Click next, then finish and ignore warning like "replacer"
+** In the "Package Explorer" view open juno-target/juno-target.target. Wait till the "Resolving Target Definition" task has reached 100%. Then click on "Set as Target Platform".
+** In the "Package Explorer" view, select ch.elexis.core.application/Elexis<..your os..> and select debug/Elexis<..your os..> in the context menu.
 
 If you have workspace-mechanic installed in your Eclipse installation, all your workspaces are regularly checked whether they have your preferredd settings. They live ~/.eclipse/mechanic
 
@@ -66,3 +66,20 @@ h3. Alternatives/not choosen paths
 * "Setup-Eclipse":https://wiki.eclipse.org/Setup-Eclipse. Disadvantages creates 50MB big installers
 * A full VM (Too big, unclear how to create)
 * "docker":http://docker.io Disadvantages, Linux-only, project is young, but promising (low on resources) but maybe I will use this solution as part of setup
+
+h3. Troubleshooting
+
+Linux-users might work around crashe like
+
+bq. No bp log location saved, using default.
+[000:000] Browser XEmbed support present: 1
+[000:000] Browser toolkit is Gtk2.
+[000:000] Using Gtk2 toolkit
+No bp log location saved, using default.
+[000:005] No bp log location saved, using default.
+[000:006] Browser XEmbed support present: 1
+[000:006] Browser toolkit is Gtk2.
+[000:006] Using Gtk2 toolkit
+[000:000] No bp log location saved, using default.
+
+by adding @-vmargs -Dorg.eclipse.swt.browser.DefaultType=mozilla@ to the invocation of eclipse.
