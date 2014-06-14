@@ -12,6 +12,9 @@ INSTALL_CMD	=	File.join(ROOT, 'director', 'director') + " -destination #{INSTALL
 REPOS = {
   'http://download.eclipse.org/releases/kepler' => ['epp.package.rcp',
                                                     'org.eclipse.egit.feature.group',
+                                                    'org.eclipse.m2e.feature.feature.group',
+                                                    'org.eclipse.mylyn.github.feature.feature.group',
+                                                    'org.eclipse.mylyn.wikitext.sdk.feature.group',
                                                     'org.eclipse.mylyn.wikitext_feature.feature.group',
                                                    ],
   'http://jeeeyul.github.io/update' => ['net.jeeeyul.pdetools.feature.feature.group',],
