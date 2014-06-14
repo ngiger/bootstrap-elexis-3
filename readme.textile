@@ -20,7 +20,9 @@ Steps:
 ** Afterwards the button should change to Applied. !mechanic_3.png! Workspace mechanic will check regularly whether your workspace is still up to date. 
 ** (Optional) Under Help..Install new software click "Available Software sites", then click on "Import" the file @p2_sites.xml@ in the cloned bootstrap-elexis-3.
 *** Select "JInto" from the drop down "Work with". Select OpenSource/Jinto.
-* Select Menu/Import... Select Maven/Existing maven repositories and browse to the checkout directory of your cloned bootstrap-elexis-3 repository. This will need some time to find all Elexis-3 projects. Click next, then finish and ignore warning like "replacer"
+* Select Menu/Import... Select Maven/Existing maven repositories and browse to the checkout directory of your cloned bootstrap-elexis-3 repository. This will need some time to find all Elexis-3 projects. Click next, then finish and ignore the warning 
+ @Description Resource Path Location Type Plugin execution not covered by lifecycle configuration: com.google.code.maven-replacer-plugin:replacer:1.5.3:replace (execution: default, phase: generate-sources) pom.xml /ch.elexis.core.p2site line 47Maven Project Build Lifecycle Mapping Problem@ 
+like "replacer"
 * In the "Package Explorer" view open juno-target/juno-target.target. Wait till the "Resolving Target Definition" task has reached 100%. Then click on "Set as Target Platform".
 * Download the "DemoDB":http://sourceforge.net/projects/elexis/files/elexis%20full%20installation/2.1.7.0/demoDB_2_1_7_mit_Administrator.zip/download and unzip it to your $HOME/elexis directory.
 * In the "Package Explorer" view, select ch.elexis.core.application/Elexis<..your os..> and select debug/Elexis<..your os..> in the context menu.
