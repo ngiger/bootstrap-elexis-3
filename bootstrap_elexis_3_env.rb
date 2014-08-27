@@ -63,11 +63,6 @@ FileUtils.makedirs(CHECKOUT)
 	end
 }
 
-mech_dest  = File.join('~', '.eclipse', 'mechanic')
-mech_tasks = Dir.glob(File.join(ROOT, 'mechanic', '*.epf'))
-FileUtils.makedirs(mech_dest)
-FileUtils.cp(mech_tasks, mech_dest, :verbose => true, :preserve => true) unless FileUtils.uptodate?(mech_dest, mech_tasks)
-
 unless File.directory?(INSTALL_DIR)
   exit 1 unless system("#{INSTALL_CMD} -repository #{REPOS.keys.join(' -r ')} -installIUs #{REPOS.values.join(' -i ')}")
 end
@@ -78,5 +73,12 @@ unless File.exists?(File.join(INSTALL_DIR, 'plugins', "de.guhsoft.jinto.core_#{J
 	exit 1 unless get_file_from_url("http://www.guh-software.de/jinto/de.guhsoft.jinto-#{JINTO_VERS}.zip")
   exit 1 unless system("unzip de.guhsoft.jinto-#{JINTO_VERS}.zip")
 end if JINTO_VERS
+
+mech_dest  = File.join(INSTALL_DIR,'configuration','com.google.eclipse.mechanic','mechanic')
+mech_tasks = Dir.glob(File.join(ROOT, 'mechanic', '*.epf'))
+FileUtils.makedirs(mech_dest)
+FileUtils.cp(mech_tasks, mech_dest, :verbose => true, :preserve => true) 
+
+
 puts "#{Time.now}: finished installing #{REPOS.keys} into #{CHECKOUT}/director, #{CHECKOUT} and #{INSTALL_DIR}"
 system("#{INSTALL_DIR}/eclipse -data #{WORKSPACE} &")
