@@ -10,19 +10,20 @@ CHECKOUT		=	File.join(ROOT, 'checkout')
 INSTALL_DIR	=	File.join(ROOT, 'eclipse')
 INSTALL_CMD	=	File.join(ROOT, 'director', 'director') + " -destination #{INSTALL_DIR} -profile Elexis "
 REPOS = {
-  'http://download.eclipse.org/releases/kepler' => ['epp.package.rcp',
+  'http://download.eclipse.org/releases/luna' => ['epp.package.rcp',
                                                     'org.eclipse.egit.feature.group',
                                                     'org.eclipse.m2e.feature.feature.group',
                                                     'org.eclipse.mylyn.github.feature.feature.group',
                                                     'org.eclipse.mylyn.wikitext.sdk.feature.group',
                                                     'org.eclipse.mylyn.wikitext_feature.feature.group',
+                                                    'org.eclipse.mylyn.docs.intent.markup.feature.feature.group',
                                                    ],
   'http://jeeeyul.github.io/update' => ['net.jeeeyul.pdetools.feature.feature.group',],
   'http://repo1.maven.org/maven2/.m2e/connectors/m2eclipse-tycho/0.7.0/N/0.7.0.201309291400' => ['org.sonatype.tycho.m2e.feature.feature.group'],
   'http://download.eclipse.org/technology/m2e/releases' => ['org.eclipse.m2e.sdk.feature.feature.group'],
   'https://raw.github.com/inventage/version-tiger-repos/master/releases' =>['com.inventage.tools.versiontiger'],
 #  'http://www.wdev91.com/update' =>['com.wdev91.eclipse.copyright'],
-  'http://workspacemechanic.eclipselabs.org.codespot.com/git.update/mechanic' =>['com.google.eclipse.mechanic/0.3.4'],
+  'http://workspacemechanic.eclipselabs.org.codespot.com/git.update/mechanic' =>['com.google.eclipse.mechanic/0.4.0'],
   }
 
 JINTO_VERS = '0.13.5'

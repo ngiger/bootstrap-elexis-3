@@ -15,10 +15,7 @@ RUN rm -rf /var/lib/dpkg/info/fuse.postinst
 RUN apt-get -y install fuse
 
 # gui, browser, editor and terminal
-RUN apt-get install -y xvfb x11vnc openbox firefox nano xterm
-
-# to make the final image smaller
-RUN apt-get clean
+RUN apt-get install -y xvfb x11vnc ubuntu-desktop firefox nano xterm vim gdm openbox
 
 # add user
 RUN useradd -m -d /home/user user
@@ -49,12 +46,12 @@ RUN apt-get -qqy install wget unzip
 RUN mkdir -p /opt/downloads && cd /opt/downloads && wget --quiet --no-check-certificate https://srv.elexis.info/jenkins/view/3.0/job/Elexis-3.0-Core/lastSuccessfulBuild/artifact/ch.elexis.core.p2site/target/products/ch.elexis.core.application.ElexisApp-linux.gtk.x86_64.zip
 RUN mkdir /usr/local/Elexis3 && cd /usr/local/Elexis3 && unzip /opt/downloads/ch.elexis.core.application.ElexisApp-linux.gtk.x86_64.zip
 RUN mkdir -p elexis && cd elexis && wget http://cznic.dl.sourceforge.net/project/elexis/elexis%20full%20installation/2.1.7.0/demoDB_2_1_7_mit_Administrator.zip && unzip demoDB_2_1_7_mit_Administrator.zip
-# ADD Elexis3.desktop /usr/share/applications/Elexis3.desktop
-# RUN apt-get -qqy install vim obmenu mercurial
-# RUN hg clone https://bitbucket.org/fabriceT/openbox-menu && cd openbox-menu && make && make install && /usr/local/bin/openbox-menu /usr/share/applications/Elexis3.desktop
 
 ADD startXvfb.sh  /startXvfb.sh
 ADD openbox_menu.xml /etc/xdg/openbox/menu.xml
 ADD Elexis3_mitDemoDB /usr/local/Elexis3/Elexis3_mitDemoDB
 RUN chown -R user:user /home/user
+
+# to make the final image smaller
+RUN apt-get clean
 

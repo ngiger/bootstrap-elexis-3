@@ -4,17 +4,8 @@ h2. A simple way to bootstrap an Eclipse environment for Elexis 3
 
 h2. Running Elexis with a DemoDB inside Docker
 
-If you have installed "docker":http://www.docker.com/ then you can run an Elexis-3 installation with an installed demoDB using these few commands. I adapted the Dockerfile from the "Minimal Graphical Ubuntu Install in Docker":http://madebits.com/blog/comments.php?y=14&m=04&entry=entry140410-145942 to my needs.
 
-# CREATE: docker build -t ngiger/elexisdemo:alpha0 .
-# START: docker run --rm -P -it --name demDB -u user ngiger/elexisdemo:alpha0
-# CONNECT (in another command prompt): vncviewer localhost:$(docker port demDB 5900 | cut -d : -f 2)
-
-You will be prompted by vncViewer for a password. Enter "password", if you haven't changed it inside the Dockerfile. Then you should see something like !images/docker_elexis_1.png!. 
-
-Right clicking on the empty space should enable you to select "Elexis with DemoDB" and start the Elexis3 with a DemoDB. Be aware all changes will be wiped away when you close.
-
-
+* *__If you are just looking for the latest builds of Elexis 3 go to the "Jenkins-CI builds for Elexis":https://srv.elexis.info/jenkins/view/3.0/job/Elexis-3.0-Core/lastSuccessfulBuild/artifact/ch.elexis.core.p2site/target/products/__*
 
 h2. Compiling from source
 
