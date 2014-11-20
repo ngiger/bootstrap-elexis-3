@@ -17,7 +17,7 @@ The following steps are needed:
 
 *  Select the @Elexis@ (or @Elexis-RM@) project and click next in
 !images/oomp_4.png!
-* You must fill in some values for stuff like path to installed Java7 and Java8 version, which looked in my case like this. Once you are satisfied press Nex.t 
+* You must fill in some values for stuff like path to installed Java7 and Java8 version, which looked in my case like this. Once you are satisfied press Nex.t
  !images/oomp_5.png!
 * You will be asked to review the steps. Press Next !images/oomp_6.png!
 * You will see how your installation progresses, which might take a long time as it downloads something like half a gigabyte.
@@ -26,11 +26,10 @@ The following steps are needed:
 * Click finsh
 
 *Missing in both setup is*
- 
-* choosing the @3lexisFormatterProfile.xml@ of the @elexis-3-core@ repository as Java Formatting style
-* Allow use of an anonymous https access to github repository?
 
-h3. Installation using a ruby script 
+* choosing the @3lexisFormatterProfile.xml@ of the @elexis-3-core@ repository as Java Formatting style
+
+h3. Installation using a ruby script
 
 In this repository you find a small ruby script bootstrap_elexis_3_env.rb which installs an Eclipse (Kepler) and a checkout of the elexis-3-core and base repositories into the current directory. This script took less than 3 minutes (depends on the download speed) in my setup.
 
