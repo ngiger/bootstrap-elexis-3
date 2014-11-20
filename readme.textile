@@ -4,7 +4,35 @@ h2. A simple way to bootstrap an Eclipse environment for Elexis 3
 
 * *__If you are just looking for the latest builds of Elexis 3 go to the "Jenkins-CI builds for Elexis":https://srv.elexis.info/jenkins/view/3.0/job/Elexis-3.0-Core/lastSuccessfulBuild/artifact/ch.elexis.core.p2site/target/products/__*
 
-Here you find a small ruby script bootstrap_elexis_3_env.rb which installs an Eclipse (Kepler) and a checkout of the elexis-3-core and base repositories into the current directory. This script took less than 3 minutes (depends on the download speed) in my setup.
+Here I used to maintain a small ruby script which was for a few months the easiest way to setup an Elexis 3 development environment. But Marco Descher came up with a better alternative based on the Eclipse "Oomp-Installer":https://wiki.eclipse.org/Eclipse_Oomph_Installer
+
+h3. Installation using Eclipse_Oomph_Installer
+
+The following steps are needed:
+
+* Download the Oomph_Installer for your platform from https://wiki.eclipse.org/Eclipse_Oomph_Installer and install into a fresh directory, eg. @/opt/oomph@
+* Start ooomp, eg. @./oomph&@ and you should be greeted with something like !images/oomp_1.png! Click next
+* Click on "+" in !images/oomp_2.png!
+* paste either the path to Marcos @https://raw.githubusercontent.com/elexis/elexis-3-core/master/Elexis.setup@ or my @https://raw.githubusercontent.com/nger/bootstrap-elexis-3/master/Elexis-RM.setup@  (which includes Jinto, Support for Ruby and Jubula) as show !images/oomp_3.png!
+
+*  Select the @Elexis@ (or @Elexis-RM@) project and click next in
+!images/oomp_4.png!
+* You must fill in some values for stuff like path to installed Java7 and Java8 version, which looked in my case like this. Once you are satisfied press Nex.t 
+ !images/oomp_5.png!
+* You will be asked to review the steps. Press Next !images/oomp_6.png!
+* You will see how your installation progresses, which might take a long time as it downloads something like half a gigabyte.
+ !images/oomp_7.png!
+* You will be prompted to enter your github credentials (or the ssh-passphrase) when the checkout of Elexis-3 !images/oomp_8.png!
+* Click finsh
+
+*Missing in both setup is*
+ 
+* choosing the @3lexisFormatterProfile.xml@ of the @elexis-3-core@ repository as Java Formatting style
+* Allow use of an anonymous https access to github repository?
+
+h3. Installation using a ruby script 
+
+In this repository you find a small ruby script bootstrap_elexis_3_env.rb which installs an Eclipse (Kepler) and a checkout of the elexis-3-core and base repositories into the current directory. This script took less than 3 minutes (depends on the download speed) in my setup.
 
 Prerequisites:
 * Java7. You may install a JDK from "Oracle":http://www.oracle.com/technetwork/java/javase/downloads/index.html
@@ -14,23 +42,23 @@ Steps:
 
 * @git clone https://github.com/ngiger/bootstrap-elexis-3.git@
 * @cd bootstrap-elexis-3@
-* @./bootstrap_elexis_3_env.rb@ # At the end it should start the eclipse creating an empty workspace in ./workspace 
+* @./bootstrap_elexis_3_env.rb@ # At the end it should start the eclipse creating an empty workspace in ./workspace
 ** Correct your workspace settings by double clicking on the workspace-mechanic button on the lower left !mechanic_1.png!
 ** Apply the changes as suggested by !mechanic_2.png!
-** Afterwards the button should change to Applied. !mechanic_3.png! Workspace mechanic will check regularly whether your workspace is still up to date. 
+** Afterwards the button should change to Applied. !mechanic_3.png! Workspace mechanic will check regularly whether your workspace is still up to date.
 ** (Optional) Under Help..Install new software click "Available Software sites", then click on "Import" the file @p2_sites.xml@ in the cloned bootstrap-elexis-3.
 *** Select "JInto" from the drop down "Work with". Select OpenSource/Jinto.
 * Select Menu/Import... Select Git/Git repositories, then Existing local repository. Click "Add" and browse to the elexis-3-core sub directory of the checkout of your cloned bootstrap-elexis-3 repository. !images/git_import_4.png! Click "Finish", then "Next".  In !images/git_import_6.png! Select "Import existing projects"
 * Repeat the same procedure for elexis-3-base
 * In the "Package Explorer" view open ch.elexis.target/juno-target.target. Wait till the "Resolving Target Definition" task has reached 100%. Then click on "Set as Target Platform". !images/target_definition.png!
 * Download the "DemoDB":http://sourceforge.net/projects/elexis/files/elexis%20full%20installation/2.1.7.0/demoDB_2_1_7_mit_Administrator.zip/download and unzip it to your $HOME/elexis directory.
-* In the "Package Explorer" view, select @ch.elexis.core.application/ElexisCore.launch@ and select debug/ElexisCore in the context menu. If you are running under MacOSX, please use the (OS X) variant. 
+* In the "Package Explorer" view, select @ch.elexis.core.application/ElexisCore.launch@ and select debug/ElexisCore in the context menu. If you are running under MacOSX, please use the (OS X) variant.
 * You will be prompted for a username and password. Enter test for both. !images/login_prompt.png!
 If you have workspace-mechanic installed in your Eclipse installation, all your workspaces are regularly checked whether they have your preferredd settings. They live $INSTALL_DIR/configuration/com.google.eclipse.mechanic/mechanic, as ~/eclipse/mechanic did not work on MacOSX.
 
 Note of June 14, 2014: As the update site for com.wdev91.eclipse.copyright vanished, I uncommented the line in bootstrap_elexis_3_env.rb.
 
-h3. Example install log
+h4. Example install log
 
 bc. --2014-02-28 14:13:26--  http://mirror.switch.ch/eclipse/tools/buckminster/products/director_latest.zip
 Auflösen des Hostnamen »mirror.switch.ch (mirror.switch.ch)«... 130.59.10.36, 2001:620:0:8::20
@@ -87,3 +115,4 @@ No bp log location saved, using default.
 [000:000] No bp log location saved, using default.
 
 by adding @-vmargs -Dorg.eclipse.swt.browser.DefaultType=mozilla@ to the invocation of eclipse.
+
