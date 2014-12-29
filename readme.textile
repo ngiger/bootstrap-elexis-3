@@ -53,7 +53,8 @@ Steps:
 * Download the "DemoDB":http://sourceforge.net/projects/elexis/files/elexis%20full%20installation/2.1.7.0/demoDB_2_1_7_mit_Administrator.zip/download and unzip it to your $HOME/elexis directory.
 * In the "Package Explorer" view, select @ch.elexis.core.application/ElexisCore.launch@ and select debug/ElexisCore in the context menu. If you are running under MacOSX, please use the (OS X) variant.
 * You will be prompted for a username and password. Enter test for both. !images/login_prompt.png!
-If you have workspace-mechanic installed in your Eclipse installation, all your workspaces are regularly checked whether they have your preferredd settings. They live $INSTALL_DIR/configuration/com.google.eclipse.mechanic/mechanic, as ~/eclipse/mechanic did not work on MacOSX.
+* You should be now inside a running Elexis which announces itself with the version @Elexis ${versionFromPomViaGroovy}@. The curious name is set, because the *official* building is done using Maven, which would result in version number like 3.1.0-a20141224-1331. !images/elexis_1.png!
+* If you have workspace-mechanic installed in your Eclipse installation, all your workspaces are regularly checked whether they have your preferredd settings. They live $INSTALL_DIR/configuration/com.google.eclipse.mechanic/mechanic, as ~/eclipse/mechanic did not work on MacOSX.
 
 Note of June 14, 2014: As the update site for com.wdev91.eclipse.copyright vanished, I uncommented the line in bootstrap_elexis_3_env.rb.
 
