@@ -47,7 +47,7 @@ Steps:
 ** Afterwards the button should change to Applied. !mechanic_3.png! Workspace mechanic will check regularly whether your workspace is still up to date.
 ** (Optional) Under Help..Install new software click "Available Software sites", then click on "Import" the file @p2_sites.xml@ in the cloned bootstrap-elexis-3.
 *** Select "JInto" from the drop down "Work with". Select OpenSource/Jinto.
-* Select Menu/Import... Select Git/Git repositories, then Existing local repository. Click "Add" and browse to the elexis-3-core sub directory of the checkout of your cloned bootstrap-elexis-3 repository. !images/git_import_4.png! Click "Finish", then "Next".  In !images/git_import_6.png! Select "Import existing projects"
+* From the Eclipse main menu, select: File - Import...Git - Projects from Git, then Existing local repository. Click "Add" and browse to the elexis-3-core sub directory of the checkout of your cloned bootstrap-elexis-3 repository. !images/git_import_4.png! Click "Finish", then "Next".  In !images/git_import_6.png! Select "Import existing projects"
 * Repeat the same procedure for elexis-3-base
 * In the "Package Explorer" view open ch.elexis.target/juno-target.target. Wait till the "Resolving Target Definition" task has reached 100%. Then click on "Set as Target Platform". !images/target_definition.png!
 * Download the "DemoDB":http://sourceforge.net/projects/elexis/files/elexis%20full%20installation/2.1.7.0/demoDB_2_1_7_mit_Administrator.zip/download and unzip it to your $HOME/elexis directory.
