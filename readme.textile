@@ -6,24 +6,12 @@ h2. A simple way to bootstrap an Eclipse environment for Elexis 3
 
 Here I used to maintain a small ruby script which was for a few months the easiest way to setup an Elexis 3 development environment. But Marco Descher came up with a better alternative based on the Eclipse "Oomp-Installer":https://wiki.eclipse.org/Eclipse_Oomph_Installer
 
+Another approach for compiling elexis-3 and generating installable products using Docker is found in the project "elexis-dockerfiles":https://github.com/ngiger/elexis-dockerfiles
+
 h3. Installation using Eclipse_Oomph_Installer
 
-The following steps are needed:
+This is now integrated into the source of the elexis-3-core project. For details, see "https://github.com/elexis/elexis-3-core/tree/master/ch.elexis.sdk":https://github.com/elexis/elexis-3-core/tree/master/ch.elexis.sdk
 
-* Download the Oomph_Installer for your platform from https://wiki.eclipse.org/Eclipse_Oomph_Installer and install into a fresh directory, eg. @/opt/oomph@
-* Start ooomp, eg. @./oomph&@ and you should be greeted with something like !images/oomp_1.png! Click next
-* Click on "+" in !images/oomp_2.png!
-* paste either the path to Marcos @https://raw.githubusercontent.com/elexis/elexis-3-core/master/Elexis.setup@ or my @https://raw.githubusercontent.com/nger/bootstrap-elexis-3/master/Elexis-RM.setup@  (which includes Jinto, Support for Ruby and Jubula) as show !images/oomp_3.png!
-
-*  Select the @Elexis@ (or @Elexis-RM@) project and click next in
-!images/oomp_4.png!
-* You must fill in some values for stuff like path to installed Java7 and Java8 version, which looked in my case like this. Once you are satisfied press Nex.t
- !images/oomp_5.png!
-* You will be asked to review the steps. Press Next !images/oomp_6.png!
-* You will see how your installation progresses, which might take a long time as it downloads something like half a gigabyte.
- !images/oomp_7.png!
-* You will be prompted to enter your github credentials (or the ssh-passphrase) when the checkout of Elexis-3 !images/oomp_8.png!
-* Click finsh
 
 *Missing in both setup is*
 
@@ -34,7 +22,7 @@ h3. Installation using a ruby script
 In this repository you find a small ruby script bootstrap_elexis_3_env.rb which installs an Eclipse (Kepler) and a checkout of the elexis-3-core and base repositories into the current directory. This script took less than 3 minutes (depends on the download speed) in my setup.
 
 Prerequisites:
-* Java7. You may install a JDK from "Oracle":http://www.oracle.com/technetwork/java/javase/downloads/index.html
+* Java8. You may install a JDK from "Oracle":http://www.oracle.com/technetwork/java/javase/downloads/index.html
 * git. You may download a version from "git-scm.com":http://git-scm.com/downloads
 
 Steps:
